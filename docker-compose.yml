@@ -3,14 +3,14 @@ services:
     php7-fpm-73:
         image: milekz/ispconfig3-php7-fpm:7.3
         container_name: php7-fpm-73
+        restart: always
+        environment:
+            HOSTNAME: ${HOSTNAME:-hosting}
         volumes:
            - /opt/php-7.3/php.ini:/etc/php7/php.ini:ro
            - /opt/php-7.3/php-fpm.d:/etc/php7/php-fpm.d:ro
            - /etc/passwd:/etc/passwd:ro
            - /etc/group:/etc/group:ro
-           - /var/www/:/var/www/
            - /var/lib/php5-fpm:/var/lib/php5-fpm
            - /var/run/mysqld/mysqld.sock:/var/run/mysqld/mysqld.sock
-        restart: always
-        environment:
-            HOSTNAME: ${HOSTNAME:-hosting}
+########## dynamic part #############
